@@ -221,8 +221,8 @@ class Virus():
             self.spread_virus,
             frames=self.gen,
             repeat=True)
-        
-        
+            
+            
 def main():
     coronavirus = Virus(COVID19_PARAMS)
     coronavirus.animate()
