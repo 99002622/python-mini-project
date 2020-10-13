@@ -8,7 +8,7 @@ GREEN = (0, 0.86, 0.03)    # recovered
 BLACK = (0, 0, 0)          # dead
 
 COVID19_PARAMS = {
-    "r0": 2.28,
+    "sample": 2.28,
     "incubation": 5,
     "percent_mild": 0.8,
     "mild_recovery": (7, 14),
@@ -46,7 +46,7 @@ class Virus():
         self.num_currently_infected = 0
         self.num_recovered = 0
         self.num_deaths = 0
-        self.r0 = params["r0"]
+        self.sample = params["sample"]
         self.percent_mild = params["percent_mild"]
         self.percent_severe = params["percent_severe"]
         self.fatality_rate = params["fatality_rate"]
@@ -85,10 +85,10 @@ class Virus():
         self.mild[self.mild_fast]["rs"].append(self.rs[0])
 
 
-    def spread_virus(self, i):
+    def spread_virus(self,i):
         self.exposed_before = self.exposed_after
         if self.day % self.serial_interval == 0 and self.exposed_before < 4500:
-            self.num_new_infected = round(self.r0 * self.total_num_infected)
+            self.num_new_infected = round(self.sample * self.total_num_infected)
             self.exposed_after += round(self.num_new_infected * 1.1)
             if self.exposed_after > 4500:
                 self.num_new_infected = round((4500 - self.exposed_before) * 0.9)
@@ -135,9 +135,9 @@ class Virus():
             self.anim.event_source.start()
 
 
-    def chunks(self, a_list, n):
-        for i in range(0, len(a_list), n):
-            yield a_list[i:i + n]
+    def chunks(self, a_list, number):
+        for i in range(0, len(a_list), number):
+            yield a_list[i:i + number]
 
 
     def assign_symptoms(self):
