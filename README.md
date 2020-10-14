@@ -11,8 +11,6 @@ The goal of this project is to simulate a viral outbreak using matplotlib.
 - Numpy
 <br />
 <br />
-
-
 ## Execute
 
 Use the following command to execute the code.
